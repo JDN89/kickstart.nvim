@@ -798,10 +798,11 @@ require('lazy').setup({
     --
     -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`.
     -- 'folke/tokyonight.nvim',
-    -- 'rose-pine/neovim',
+    'rose-pine/neovim',
     -- name = 'rose-pine',
-    -- 'catppuccin/nvim',
+    'catppuccin/nvim',
     'olivercederborg/poimandres.nvim',
+    'shatur/neovim-ayu',
     priority = 1000, -- Make sure to load this before all the other start plugins.
 
     config = function()
@@ -837,7 +838,7 @@ require('lazy').setup({
       -- Better Around/Inside textobjects
       --
       -- Examples:
-      --  - va)  - [V]isually select [A]round [)]paren
+      --  - va)  - [V]isually select [A]round [)]paren:
       --  - yinq - [Y]ank [I]nside [N]ext [Q]uote
       --  - ci'  - [C]hange [I]nside [']quote
       require('mini.ai').setup { n_lines = 500 }
@@ -849,7 +850,15 @@ require('lazy').setup({
       -- - sr)'  - [S]urround [R]eplace [)] [']
       require('mini.surround').setup()
 
-      -- require('mini.files').setup()
+      require('mini.files').setup {
+        -- General options
+        options = {
+          -- Whether to delete permanently or move into module-specific trash
+          permanent_delete = true,
+          -- Whether to use for editing directories
+          use_as_default_explorer = false,
+        },
+      }
 
       require('mini.pairs').setup()
 
