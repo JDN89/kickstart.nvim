@@ -857,17 +857,17 @@ require('lazy').setup({
       -- - saiw) - [S]urround [A]dd [I]nner [W]ord [)]Paren
       -- - sd'   - [S]urround [D]elete [']quotes
       -- - sr)'  - [S]urround [R]eplace [)] [']
-      require('mini.surround').setup()
+      -- require('mini.surround').setup()
 
-      require('mini.files').setup {
-        -- General options
-        options = {
-          -- Whether to delete permanently or move into module-specific trash
-          permanent_delete = true,
-          -- Whether to use for editing directories
-          use_as_default_explorer = false,
-        },
-      }
+      -- require('mini.files').setup {
+      --   -- General options
+      --   options = {
+      --     -- Whether to delete permanently or move into module-specific trash
+      --     permanent_delete = true,
+      --     -- Whether to use for editing directories
+      --     use_as_default_explorer = false,
+      --   },
+      -- }
 
       require('mini.pairs').setup()
 
