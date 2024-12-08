@@ -36,3 +36,24 @@ require("lazy").setup({
   checker = { enabled = true },
 })
 
+-- -- If I want to call treesitter and set different highlights,
+-- -- then set it after setting the colorscheme with lazyvim.
+-- -- Otherwise LazyVim overrides the colorscheme
+-- -- Set custom highlights after colorscheme
+-- local function set_custom_highlights()
+--   -- Example: Builtin function highlight
+   vim.api.nvim_set_hl(0, "@function.builtin.lua", { fg = "yellow" })
+--
+--   -- Example: ColorColumn
+--   vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#90ee90"})
+-- end
+--
+-- -- Apply custom highlights after the colorscheme is set
+-- vim.api.nvim_create_autocmd("ColorScheme", {
+--   callback = function()
+--     set_custom_highlights()
+--   end,
+-- })
+--
+-- -- Apply immediately in case colorscheme is already loaded
+-- set_custom_highlights()
