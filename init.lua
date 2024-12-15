@@ -41,11 +41,8 @@ vim.api.nvim_create_autocmd('TermOpen', {
         vim.opt.relativenumber = false
     end,
 
-    job_id = vim.bo.channel
+
 })
-
-
-local job_id = 0
 
 -- open a small terminal in the bottom of neovim
 vim.keymap.set("n", "<space>st", function()
@@ -55,7 +52,9 @@ vim.keymap.set("n", "<space>st", function()
     vim.api.nvim_win_set_height(0, 15)
 end
 )
+
+--https://www.youtube.com/watch?v=ooTcnx066Do
 --example on who to send commands to the terminal when openening the terminal
-vim.keymap.set("n", "<space>example", function()
-    vim.fn.chansend(job_id, { "la\r\n" })
-end)
+-- vim.keymap.set("n", "<space>example", function()
+--     vim.fn.chansend(job_id, { "la\r\n" })
+-- end)
