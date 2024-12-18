@@ -25,33 +25,35 @@ vim.wo.relativenumber = true
 vim.opt.clipboard = "unnamedplus"
 
 vim.api.nvim_create_autocmd('TextYankPost', {
-    desc = 'Highlight when yanking text',
-    group = vim.api.nvim_create_augroup('jan-highlight-yank', { clear = true }),
-    callback = function()
-        vim.highlight.on_yank()
-    end,
+  desc = 'Highlight when yanking text',
+  group = vim.api.nvim_create_augroup('jan-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
 })
 
 -- when you call TermOPen don't set relativenumber
 vim.api.nvim_create_autocmd('TermOpen', {
-    group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
-    desc = 'Open neovim terminal',
-    callback = function()
-        vim.opt.number = false
-        vim.opt.relativenumber = false
-    end,
+  group = vim.api.nvim_create_augroup('custom-term-open', { clear = true }),
+  desc = 'Open neovim terminal',
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
 
 
 })
 
 -- open a small terminal in the bottom of neovim
 vim.keymap.set("n", "<space>st", function()
-    vim.cmd.vnew()
-    vim.cmd.term()
-    vim.cmd.wincmd("J")
-    vim.api.nvim_win_set_height(0, 15)
+  vim.cmd.vnew()
+  vim.cmd.term()
+  vim.cmd.wincmd("J")
+  vim.api.nvim_win_set_height(0, 15)
 end
 )
+
+vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 --https://www.youtube.com/watch?v=ooTcnx066Do
 --example on who to send commands to the terminal when openening the terminal
