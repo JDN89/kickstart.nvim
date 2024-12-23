@@ -27,13 +27,14 @@ return {
   keys = function(_, keys)
     local dap = require 'dap'
     local dapui = require 'dapui'
+    local widgets = require('dap.ui.widgets')
     return {
       -- Updated debugging keymaps to match IntelliJ IDEA's defaults
-      { '<F9>',   dap.continue,          desc = 'Debug: Start/Continue' },
-      { '<F7>',   dap.step_into,         desc = 'Debug: Step Into' },
-      { '<F8>',   dap.step_over,         desc = 'Debug: Step Over' },
-      { '<S-F8>', dap.step_out,          desc = 'Debug: Step Out' }, -- <S-F8> means Shift+F8
-      { '<C-F8>', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
+      { '<F9>',      dap.continue,          desc = 'Debug: Start/Continue' },
+      { '<F7>',      dap.step_into,         desc = 'Debug: Step Into' },
+      { '<F8>',      dap.step_over,         desc = 'Debug: Step Over' },
+      { '<S-F8>',    dap.step_out,          desc = 'Debug: Step Out' }, -- <S-F8> means Shift+F8
+      { '<leader>b', dap.toggle_breakpoint, desc = 'Debug: Toggle Breakpoint' },
       {
         '<C-S-F8>',
         function()
@@ -88,6 +89,35 @@ return {
           disconnect = '⏏',
         },
       },
+      layouts = {
+        {
+          elements = { {
+            id = "scopes",
+            size = 0.20
+          }, {
+            id = "breakpoints",
+            size = 0.25
+          }, {
+            id = "stacks",
+            size = 0.25
+          }, {
+            id = "watches",
+            size = 0.25
+          } },
+          position = "left",
+          size = 100
+        }, {
+        elements = { {
+          id = "repl",
+          size = 0.5
+        }, {
+          id = "console",
+          size = 0.5
+        } },
+        position = "bottom",
+        size = 20
+      }
+      }
     }
 
     dap.listeners.after.event_initialized['dapui_config'] = dapui.open
