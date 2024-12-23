@@ -99,7 +99,7 @@ return {
         require('telescope.builtin').find_files {
           cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
         }
-      end)
+      end, { desc = '[E]xplore neovim [P]oject files' })
 
       require "config.telescope.multigrep".setup()
     end,
