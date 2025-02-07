@@ -115,7 +115,13 @@ return {
       --   require('cmp_nvim_lsp').default_capabilities())
 
       local servers = {
-        clangd = {},
+        clangd = {
+          on_attach = function()
+            print 'attach for C'
+            require('clangd_extensions.inlay_hints').setup_autocmd()
+            require('clangd_extensions.inlay_hints').set_inlay_hints()
+          end,
+        },
         gopls = {},
         rust_analyzer = {
           capabilities = capabilities,
