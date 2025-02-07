@@ -117,7 +117,15 @@ return {
       local servers = {
         clangd = {},
         gopls = {},
-        rust_analyzer = {},
+        rust_analyzer = {
+          capabilities = capabilities,
+          settings = {
+            ["rust-analyzer"] = {
+              cargo = { allFeatures = true },
+              checkOnSave = { command = "clippy" },
+            },
+          },
+        },
 
         lua_ls = {
           settings = {
