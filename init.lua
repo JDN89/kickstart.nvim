@@ -13,7 +13,7 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 
 -- Map 'jj' to Escape in insert mode
-vim.keymap.set("i", "jj", "<Esc>")
+vim.keymap.set("i", "<C-c>", "<Esc>")
 
 vim.wo.number = true
 vim.wo.relativenumber = true
