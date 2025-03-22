@@ -19,7 +19,6 @@ return {
       sources = {
         default = { 'lsp', 'path', 'snippets', 'buffer' },
         -- optionally disable cmdline completions
-        cmdline = {},
       },
 
       signature = { enabled = true }

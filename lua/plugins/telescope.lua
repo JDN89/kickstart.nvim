@@ -95,6 +95,8 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
 
+      -- Explore the neovim plugins to f.e. see how something is implemented by
+      -- a plugin
       vim.keymap.set('n', '<space>ep', function()
         require('telescope.builtin').find_files {
           cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")

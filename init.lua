@@ -13,13 +13,13 @@ vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 
 -- Map 'jj' to Escape in insert mode
-vim.keymap.set("i", "<C-c>", "<Esc>")
+vim.keymap.set("i", "jj", "<Esc>", { desc = 'Remap  [E]sc' })
 
-vim.wo.number = true
 vim.wo.relativenumber = true
 
-
 vim.opt.clipboard = "unnamedplus"
+
+vim.o.guicursor = "n:block-blinkwait100-blinkon100-blinkoff100,i:ver10"
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
