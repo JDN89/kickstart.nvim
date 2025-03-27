@@ -67,7 +67,21 @@ return {
 
           if not client then return end
 
-          if client.supports_method('textDocument/formatting') then
+          -- My completion started behaving very aggressive but I don't know if
+          -- it was the fault of lsp completion of blink CMP. PLace this in
+          -- comment for now
+          -- if client:supports_method('textDocument/completion') then
+          --   vim.lsp.completion.enable(true, client.id, event.buf,
+          --     { autotrigger = true })
+          -- end
+
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
+            map('<leader>th', function()
+              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
+            end, '[T]oggle Inlay [H]ints')
+          end
+
+          if client:supports_method('textDocument/formatting') then
             -- Format current buffer on save
             vim.api.nvim_create_autocmd('BufWritePre', {
               buffer = event.buf,
@@ -77,7 +91,7 @@ return {
             })
           end
 
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
+          if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight) then
             local highlight_augroup = vim.api.nvim_create_augroup(
               'lsp-highlight',
               { clear = false })
@@ -100,12 +114,6 @@ return {
                 vim.api.nvim_clear_autocmds { group = 'lsp-highlight', buffer = event2.buf }
               end,
             })
-          end
-
-          if client and client.supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
-            map('<leader>th', function()
-              vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled { bufnr = event.buf })
-            end, '[T]oggle Inlay [H]ints')
           end
         end,
       })

@@ -21,6 +21,18 @@ vim.opt.clipboard = "unnamedplus"
 
 vim.o.guicursor = "n:block-blinkwait100-blinkon100-blinkoff100,i:ver10"
 
+-- show virtual diagnostics
+vim.diagnostic.config({
+  -- Use the default configuration
+  -- virtual_lines = true
+
+  -- Alternatively, customize specific options
+  virtual_lines = {
+    -- Only show virtual line diagnostics for the current cursor line
+    current_line = true,
+  },
+})
+
 vim.api.nvim_create_autocmd('TextYankPost', {
   desc = 'Highlight when yanking text',
   group = vim.api.nvim_create_augroup('jan-highlight-yank', { clear = true }),
