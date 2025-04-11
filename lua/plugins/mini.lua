@@ -11,5 +11,7 @@ return {
     surround.setup {}
     local ai = require 'mini.ai'
     ai.setup {}
+    local icons = require('mini.icons')
+    icons.setup {}
   end
 }
