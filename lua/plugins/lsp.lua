@@ -20,10 +20,17 @@ return {
 
     },
 
-
     config = function()
       local capabilities = require('blink.cmp').get_lsp_capabilities()
-      require("lspconfig").lua_ls.setup { capabilities = capabilities }
+      require("lspconfig").lua_ls.setup { capabilities = capabilities,
+        settings = {
+          Lua = {
+            diagnostics = {
+              globals = { 'Snacks', 'vim', 'use', 'packer_plugins' } -- add any globals you use
+            }
+          }
+        }
+      }
 
       vim.api.nvim_create_autocmd('LspAttach', {
         group = vim.api.nvim_create_augroup('lsp-attach', { clear = true }),
@@ -51,10 +58,10 @@ return {
           -- My completion started behaving very aggressive but I don't know if
           -- it was the fault of lsp completion of blink CMP. PLace this in
           -- comment for now
-          -- if client:supports_method('textDocument/completion') then
-          --   vim.lsp.completion.enable(true, client.id, event.buf,
-          --     { autotrigger = true })
-          -- end
+          if client:supports_method('textDocument/completion') then
+            vim.lsp.completion.enable(true, client.id, event.buf,
+              { autotrigger = true })
+          end
 
           if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             map('<leader>th', function()
