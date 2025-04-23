@@ -149,12 +149,39 @@ return {
         type = 'codelldb',
         request = 'launch',
         program = function()
-          return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/',
-            'file')
+          -- Directory where your compiled binaries are located
+          local build_dir = "build"
+
+          -- Get all file names inside the build directory
+          local files = vim.fn.readdir(build_dir)
+
+          -- Prepare a table to store only the executables (not .o files)
+          local executables = {}
+
+          for _, file in ipairs(files) do
+            local full_path = build_dir .. "/" .. file
+
+            -- Filter:
+            -- 1. File must be executable (not just present)
+            -- 2. File must NOT end in '.o' (object files)
+            if vim.fn.executable(full_path) == 1 and not file:match("%.o$") then
+              table.insert(executables, full_path)
+            end
+          end
+
+          -- If at least one executable is found, use the first as the default suggestion
+          -- Otherwise, just suggest the build directory as a fallback
+          local default = executables[1] or build_dir .. "/"
+
+          -- Prompt the user to pick the executable (can be edited or accepted as-is)
+          return vim.fn.input("Path to executable: ", default, "file")
         end,
         cwd = '${workspaceFolder}',
         stopOnEntry = false,
-        args = {},
+        args = function()
+          local input = vim.fn.input("Program arguments: ")
+          return vim.split(input, " ")
+        end,
       },
     }
 
