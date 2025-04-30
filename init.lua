@@ -16,6 +16,7 @@ vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
 vim.keymap.set("i", "jj", "<Esc>", { desc = 'Remap  [E]sc' })
 
 vim.wo.relativenumber = true
+vim.wo.number = true
 
 vim.opt.clipboard = "unnamedplus"
 

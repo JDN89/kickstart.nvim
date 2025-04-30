@@ -29,7 +29,7 @@ return {
       -- default list of enabled providers defined so that you can extend it
       -- elsewhere in your config, without redefining it, via `opts_extend`
       sources = {
-        default = { 'lsp', 'path', 'buffer', } --'snippets',  },
+        default = { 'lsp', 'path', 'buffer' } --'snippets',  },
         -- optionally disable cmdline completions
       },
 
