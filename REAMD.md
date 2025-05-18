@@ -1,4 +1,5 @@
 ### TODO
+- [ ] fix aggreassive autocomplete blink cmp
 - [ ] cleanup config
 - [ ] fix ugly statusline
 - [ ] learn to work with flash.lua
